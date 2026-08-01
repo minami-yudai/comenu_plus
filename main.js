@@ -1,46 +1,37 @@
-const jsonFile = 'data.json'; // JSONファイルのパス
+const url = "data.json";	// JSONファイル名
+let result;
 
-document.addEventListener('DOMContentLoaded', () => {
-  fetch(jsonFile)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to fetch ${jsonFile}. HTTP Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(array => {
-      const addHtml = document.getElementById('addhtml');
-      if (!addHtml) {
-        console.error('Error: Element with ID "addhtml" not found.');
-        return;
-      }
+// JSONファイルを整形して表示する
+function JSONread(data){
+	for (const [key, value] of Object.entries(data)) {
+		console.log(key, value);	//key=分類名、value=[[メニュー名、値段]…]
+		const menucontainer = document.getElementById("menucontainer");
+		let newcategory = document.createElement("dev");
+		newcategory.className = "category";
+		newcategory.id = key;
+		menucontainer.appendChild(newcategory)
+		let i=0
+		value.sort((a, b) => b[1] - a[1]).
+		
+		newvalue.forEach((item,index)  =>{	//item=[メニュー名、値段]
+			console.log(item[0]+"は"+item[1]+"だよ")
+			//新しいメニューを作成
+			const newmenu = document.createElement("dev");
+			newmenu.className = "menu";
+			newmenu.id = key+"_"+index;
+			newcategory.appendChild(newmenu)
+			newmenu.insertAdjacentHTML('beforeend', '<span class="menuname">'+item[0]+'</span><span class="menuprice">'+item[1]+'</span>');
+		})
+	}
+};
+//例
+//dev class=category id=on_a / dev class = menu / span class = menuname, span class = menuprice
 
-      addHtml.innerHTML = '';
+// 起動時の処理
+window.addEventListener("load", ()=>{
+	// JSONファイルを取得して表示
+	fetch(url)
+		.then( response => response.json())
+		.then( data => JSONread(data));
 
-      // リストアイテムを生成
-      array.forEach(obj => {
-        const li = document.createElement('li');
-        
-        // 各プロパティを追加
-        const municipalityCode = document.createElement('span');
-        municipalityCode.textContent = obj.municipalityCode || '団体コード';
-
-        const prefectures = document.createElement('span');
-        prefectures.textContent = obj.prefectures || '都道府県名（漢字）';
-
-        const prefecturesKana = document.createElement('span');
-        prefecturesKana.textContent = obj.prefecturesKana || '都道府県名（カナ）';
-
-        // 各要素をリストアイテムに追加
-        li.appendChild(municipalityCode);
-        li.appendChild(prefectures);
-        li.appendChild(prefecturesKana);
-
-        // リストアイテムをDOMに追加
-        addHtml.appendChild(li);
-      });
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
 });

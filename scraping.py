@@ -42,8 +42,8 @@ def extract_name_and_price(html: str):
 
         price_tag = h3.select_one("span.price")
         price = price_tag.get_text(strip=True) if price_tag else ""
-
-        rows.append((name, price))
+        newprice = int(price[1:])
+        rows.append((name, newprice))
 
     return rows
 
@@ -54,7 +54,7 @@ def save_to_json(rows, output_path: str):
 
 
 def main():
-    all_rows = {"on_a": [],"on_b":[],"on_d": [],"on_e":[],"on_bunrui1": []}
+    all_rows = {}
 
     for code in CATEGORY_CODES:
         print(f"取得中: {code}")

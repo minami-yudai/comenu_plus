@@ -1,0 +1,11 @@
+.menu{
+    width:80%;
+    display:block;
+    font-size:large;
+    margin:0 auto;
+}
+.menuprice{
+    float:right;
+}
+
+/*//dev class=category id=on_a / dev class = menu / span class = menuname, span class = menuprice*/
