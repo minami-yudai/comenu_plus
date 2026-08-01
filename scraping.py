@@ -1,11 +1,3 @@
-"""
-https://west2-univ.jp/sp/menu.php?t=650112 用。
-
-カテゴリ見出し(主菜・副菜・丼カレー・デザート・ライス)をクリックすると
-裏側で menu_load.php を直接呼び出しているだけなので、
-ブラウザ操作(クリック)を使わず、そのAPIに直接アクセスして
-全カテゴリの「メニュー名」「価格」をCSVに保存する。
-"""
 
 import csv
 import requests
@@ -65,14 +57,14 @@ def save_to_csv(rows, output_path: str):
 
 
 def main():
-    all_rows = []
+    all_rows = {"on_a": [],"on_b":[],"on_d": [],"on_e":[],"on_bunrui1": []}
 
     for code in CATEGORY_CODES:
         print(f"取得中: {code}")
         html = fetch_category_html(code)
         rows = extract_name_and_price(html)
         print(f"  -> {len(rows)} 件")
-        all_rows.extend(rows)
+        all_rows[code] = rows
 
     save_to_csv(all_rows, OUTPUT_CSV)
     print(f"合計 {len(all_rows)} 件のデータを {OUTPUT_CSV} に保存しました。")

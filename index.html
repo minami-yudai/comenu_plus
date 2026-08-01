@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>CoMenu+</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<footer>
+    <ul>
+        <li>
+
+        </li>
+    </ul>
+</footer>
+<body>
+<main>
+    <div id="sec1">
+        <div class="item" id="menu1_1">メニュー名<span class="price">価格</span></div>
+    </div>
+</main>
+<footer>
+    <div class="tray-bar" id="trayBar">
+        <span><span class="count" id="trayCount">0</span> 品選択中</span>
+        <span class="total" id="trayTotal">¥0</span>
+        <button class="clear" id="trayClear">選択をリセット</button>
+</div>
+</footer>
+
+
+<script>
+  const buttons = document.querySelectorAll('.item-btn');
+  const trayBar = document.getElementById('trayBar');
+  const trayCount = document.getElementById('trayCount');
+  const trayTotal = document.getElementById('trayTotal');
+  const trayClear = document.getElementById('trayClear');
+
+  function updateTray() {
+    const selected = document.querySelectorAll('.item-btn.selected');
+    const total = Array.from(selected).reduce((sum, el) => sum + Number(el.dataset.price), 0);
+
+    trayCount.textContent = selected.length;
+    trayTotal.textContent = '¥' + total.toLocaleString();
+    trayBar.classList.toggle('visible', selected.length > 0);
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('selected');
+      updateTray();
+    });
+  });
+
+  trayClear.addEventListener('click', () => {
+    buttons.forEach(btn => btn.classList.remove('selected'));
+    updateTray();
+  });
+</script>
+
+</body>
+</html>
