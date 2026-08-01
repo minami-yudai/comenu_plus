@@ -1,4 +1,4 @@
-const jsonFile = './json/data.json'; // JSONファイルのパス
+const jsonFile = 'data.json'; // JSONファイルのパス
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch(jsonFile)
