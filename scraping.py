@@ -1,5 +1,5 @@
 
-import csv
+import json
 import requests
 from bs4 import BeautifulSoup
 
@@ -10,7 +10,7 @@ TENPO_ID = "650112"  # 店舗ID(URLの t= の値)
 CATEGORY_CODES = ["on_a", "on_b", "on_d", "on_e", "on_bunrui1"]
 
 BASE_URL = "https://west2-univ.jp/sp/menu_load.php"
-OUTPUT_CSV = "data.csv"
+OUTPUT_CSV = "data.json"
 # =================================
 
 
@@ -48,12 +48,9 @@ def extract_name_and_price(html: str):
     return rows
 
 
-def save_to_csv(rows, output_path: str):
-    with open(output_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(["name", "price"])
-        for name, price in rows:
-            writer.writerow([name, price])
+def save_to_json(rows, output_path: str):
+    with open(output_path, mode="wt", encoding="utf-8") as f:
+	    json.dump(rows, f, ensure_ascii=False, indent=2)
 
 
 def main():
@@ -66,7 +63,7 @@ def main():
         print(f"  -> {len(rows)} 件")
         all_rows[code] = rows
 
-    save_to_csv(all_rows, OUTPUT_CSV)
+    save_to_json(all_rows, OUTPUT_CSV)
     print(f"合計 {len(all_rows)} 件のデータを {OUTPUT_CSV} に保存しました。")
 
 
