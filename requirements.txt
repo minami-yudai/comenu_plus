@@ -1,1 +1,2 @@
-playwright pip install -r requirements.txt
+requests
+beautifulsoup4
