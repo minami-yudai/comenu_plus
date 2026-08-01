@@ -24,7 +24,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run scraper
-        run: python scrape_west2univ_final.py
+        run: python scraping.py
 
       - name: Commit and push if changed
         run: |
