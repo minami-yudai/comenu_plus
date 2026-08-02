@@ -1,6 +1,6 @@
 :root {
   --cream:      #FFF8E7;   /* 背景 */
-  --btn:        #FFC845;   /* ボタン面（メイン） */
+  --btn:        #fad57f;   /* ボタン面（メイン） */
   --btn-dk:     #F2A900;   /* 押下時の濃色 */
   --accent:     #E8890C;   /* 見出しバー・強調 */
   --ink:        #3A2E0E;   /* 本文の濃いインク色 */
@@ -137,9 +137,9 @@ footer div span{
 }
 
 .menu.selected {
-  background-color: #775a00 !important;
+  background-color: var(--btn-dk) !important;
 }
 
 .menu.abondoned {
-  background-color: #50504f; /* 選択中の色 */
+  background-color: #c2c0c0; /* 選択中の色 */
 }
