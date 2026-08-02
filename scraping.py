@@ -4,17 +4,22 @@ import requests
 from bs4 import BeautifulSoup
 
 # ==== 設定項目 ====
-TENPO_ID = "650112"  # 店舗ID(URLの t= の値)
+TENPO_ID = ["650112", "650111", "650118", "650113", "650115"]
 
 # カテゴリコード一覧(ページのJSに書かれていたもの)
-CATEGORY_CODES = ["on_a", "on_b", "on_d", "on_e", "on_bunrui1"]
+CATEGORY_CODES = [["on_a", "on_b", "on_d", "on_e", "on_bunrui1"], # 吉田
+                  ["on_a", "on_b", "on_c", "on_d", "on_e", "on_bunrui1", "on_bunrui3"], # 中央
+                  ["on_a", "on_b", "on_c", "on_d", "on_e", "on_bunrui1", "on_bunrui2", "on_bunrui3", "on_bunrui5"], # ルネ
+                  ["on_a", "on_b", "on_c", "on_d", "on_e", "on_bunrui1", "on_bunrui2", "on_bunrui3"], # 北部
+                  ["on_a", "on_b", "on_bunrui1"] # 南部
+                  ]
 
 BASE_URL = "https://west2-univ.jp/sp/menu_load.php"
 OUTPUT_CSV = "data.json"
 # =================================
 
 
-def fetch_category_html(category_code: str) -> str:
+def fetch_category_html(tempo_id:str, category_code: str) -> str:
     """1カテゴリ分のHTML断片を取得する"""
     headers = {
         "User-Agent": (
@@ -23,7 +28,7 @@ def fetch_category_html(category_code: str) -> str:
             "Chrome/125.0 Safari/537.36"
         )
     }
-    params = {"t": TENPO_ID, "a": category_code}
+    params = {"t": tempo_id, "a": category_code}
     res = requests.get(BASE_URL, params=params, headers=headers, timeout=10)
     res.raise_for_status()
     res.encoding = res.apparent_encoding
@@ -54,15 +59,16 @@ def save_to_json(rows, output_path: str):
 
 
 def main():
-    all_rows = {}
-
-    for code in CATEGORY_CODES:
-        print(f"取得中: {code}")
-        html = fetch_category_html(code)
-        rows = extract_name_and_price(html)
-        print(f"  -> {len(rows)} 件")
-        all_rows[code] = rows
-
+    all_rows = [{},{},{},{},{}]
+    i = 0
+    while i < 5:
+        for code in CATEGORY_CODES[i]:
+            print(f"取得中: {code}")
+            html = fetch_category_html(TENPO_ID[i], code)
+            rows = extract_name_and_price(html)
+            print(f"  -> {len(rows)} 件")
+            all_rows[i][code] = rows
+        i+= 1
     save_to_json(all_rows, OUTPUT_CSV)
     print(f"合計 {len(all_rows)} 件のデータを {OUTPUT_CSV} に保存しました。")
 
