@@ -1,9 +1,14 @@
 .menu{
     width:80%;
     display:block;
-    font-size:large;
-    margin:0 auto;
+    font-size:40px;
+    margin:5px auto;
+    background-color:#80765f;
+    color:white;
+    border-radius:10px;
+    padding:10px;
 }
+
 .menuprice{
     float:right;
 }

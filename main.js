@@ -9,17 +9,17 @@ function JSONread(data){
 		let newcategory = document.createElement("dev");
 		newcategory.className = "category";
 		newcategory.id = key;
-		menucontainer.appendChild(newcategory)
-		let i=0
-		value.sort((a, b) => b[1] - a[1]).
-		
+		menucontainer.appendChild(newcategory);
+		let newvalue = value.sort((a, b) => b[1] - a[1]);
+		console.log(newvalue);
+
 		newvalue.forEach((item,index)  =>{	//item=[メニュー名、値段]
-			console.log(item[0]+"は"+item[1]+"だよ")
+			console.log(item[0]+"は"+item[1]+"だよ");
 			//新しいメニューを作成
 			const newmenu = document.createElement("dev");
 			newmenu.className = "menu";
 			newmenu.id = key+"_"+index;
-			newcategory.appendChild(newmenu)
+			newcategory.appendChild(newmenu);
 			newmenu.insertAdjacentHTML('beforeend', '<span class="menuname">'+item[0]+'</span><span class="menuprice">'+item[1]+'</span>');
 		})
 	}
