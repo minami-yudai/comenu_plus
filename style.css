@@ -137,9 +137,9 @@ footer div span{
 }
 
 .menu.selected {
-  background-color: #ffe9a8 !important;
+  background-color: #775a00 !important;
 }
 
 .menu.abondoned {
-  background-color: #ffe9a841; /* 選択中の色 */
+  background-color: #50504f; /* 選択中の色 */
 }
