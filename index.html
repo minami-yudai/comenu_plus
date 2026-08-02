@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>CoMenu+</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>CoMenu+(local)</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<main>
-  <div id="menucontainer">
 
-  </div>
-</main>
-<script src="main.js"></script>
+<body>
+  <header>
+    <p>CoMenu+</p>
+    <select id="storeselect">
+      <option>吉田食堂</option>
+      <option>カフェテリアルネ</option>
+      <option>中央食堂</option>
+      <option>北部食堂</option>
+      <option>南部食堂</option>
+    </select>
+    <img src="hamburger.svg" id="hamburger">
+  </header>
+  <main>
+    <div id="menucontainer"></div>
+  </main>
+  <footer>
+    <div id="seldishes">選択：<span>0</span>品</div>
+    <div id="selsum">合計：<span>0</span>円</div>
+    <div id="seldif">750円まであと：<span>750</span>円</div>
+  </footer>
+  <script src="main.js"></script>
 </body>
 </html>
