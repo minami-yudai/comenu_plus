@@ -1,4 +1,3 @@
-
 import json
 import requests
 from bs4 import BeautifulSoup
@@ -6,7 +5,7 @@ from bs4 import BeautifulSoup
 # ==== 設定項目 ====
 TENPO_ID = ["650112", "650111", "650118", "650113", "650115"]
 
-# カテゴリコード一覧(ページのJSに書かれていたもの)
+# カテゴリコード一覧(ページのJSに書かれていたもの)　冗長だね
 CATEGORY_CODES = [["on_a", "on_b", "on_d", "on_e", "on_bunrui1"], # 吉田
                   ["on_a", "on_b", "on_c", "on_d", "on_e", "on_bunrui1", "on_bunrui3"], # 中央
                   ["on_a", "on_b", "on_c", "on_d", "on_e", "on_bunrui1", "on_bunrui2", "on_bunrui3", "on_bunrui5"], # ルネ
@@ -70,7 +69,7 @@ def main():
             all_rows[i][code] = rows
         i+= 1
     save_to_json(all_rows, OUTPUT_CSV)
-    print(f"合計 {len(all_rows)} 件のデータを {OUTPUT_CSV} に保存しました。")
+    print(f"合計 {len(all_rows)} 件のデータを {OUTPUT_CSV} に保存")
 
 
 if __name__ == "__main__":

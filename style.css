@@ -41,6 +41,7 @@ header p{
   right:120px;
   border:none;
 }
+
 #hamburger {
   position:absolute;
   right:20px;
@@ -147,6 +148,7 @@ footer div span{
   font-size:40px;
   height:200px;
 }
+
 #priceset{
   font-size:50px;
   height:100px;

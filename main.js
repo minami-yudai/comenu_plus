@@ -11,6 +11,7 @@ const category = [{on_a: "主菜", on_b: "副菜",on_c:"麺類", on_d: "丼・�
 	{on_a: "主菜", on_b: "副菜", on_c:"麺類", on_d: "丼・カレー", on_e: "デザート", on_bunrui1: "オーダー", on_bunrui2: "ケバブ&ベジタリアン", on_bunrui3: "ケバブ", on_bunrui5: "ライス"},
 	{on_a: "主菜", on_b: "副菜", on_c:"麺類", on_d: "丼・カレー", on_e: "デザート", on_bunrui1: "昼 北部限定コーナー",on_bunrui2: "夜 丼・北部限定コーナー", on_bunrui3: "ライス"},
 	{on_a: "主菜", on_b: "副菜", on_bunrui1: "ライス"}
+	// 冗長
 ]
 const menucontainer = document.getElementById("menucontainer");
 
@@ -38,7 +39,7 @@ function JSONread(datas){
 
 //dev class=category id=on_a / dev class = menu / span class = menuname, span class = menuprice
 let menus = document.querySelectorAll(".menu");
-let seldishesEl;
+let seldishesEl; //ここらへんconstでグローバルに出来ないのかなぁ
 let selsumEl;
 let THRESHOLD = 750;
 let seldifEl = THRESHOLD;
@@ -88,7 +89,7 @@ window.addEventListener("load", ()=>{
 		const selectedValue = event.target.value; // 選ばれたvalue値
 		localStorage.setItem('comenu+_where', selectedValue);
 		menucontainer.innerHTML = "";
-		fetch(url)
+		fetch(url) //冗長
 		.then( response => response.json())
 		.then( data => JSONread(data))
 		.then(function(){
