@@ -155,3 +155,11 @@ footer div span{
   width:200px;
   text-align:center;
 }
+
+.setting-item{
+  height:100px;
+}
+
+#set-default{
+  height:100px;
+}
