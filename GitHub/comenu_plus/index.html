@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>CoMenu+</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <p>CoMenu+</p>
+    <select id="storeselect">
+      <option value="2">カフェテリアルネ</option>
+      <option value="0">吉田食堂</option>
+      <option value="1">中央食堂</option>
+      <option value="3">北部食堂</option>
+      <option value="4">南部食堂</option>
+    </select>
+    <img src="hamburger.svg" id="hamburger">
+  </header>
+  <div id="setting" class="none">
+    <div class="setting-item menu">1食あたりの目標金額<input type="number" id="set-aim"></div>
+    <div class="setting-item menu">金額順に並び替える<input type="checkbox" id="set-order"></div>
+    <div class="setting-item menu">時間帯によってメニューを変更する<input type="checkbox" id="set-time">(例えば、昼間は朝食プレートが表示されなくなります)</div>
+    <div class="setting-item menu">デフォルトの食堂
+      <select id="set-default">
+        <option value="2">カフェテリアルネ</option>
+        <option value="0">吉田食堂</option>
+        <option value="1">中央食堂</option>
+        <option value="3">北部食堂</option>
+        <option value="4">南部食堂</option>
+      </select>
+    </div>
+    記載がないメニューを入力するために、フリー入力メニューを作りたい
+  </div>
+  <main>
+    <div id="menucontainer"></div>
+  </main>
+  <footer>
+    <div id="seldishes">選択：<span>0</span>品</div>
+    <div id="selsum">合計：<span>0</span>円</div>
+    <div id="seldif">750円まであと：<span>750</span>円</div>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>
